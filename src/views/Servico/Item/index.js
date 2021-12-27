@@ -1,10 +1,10 @@
-/* eslint-disable eqeqeq */
+
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Alert, Container, Table } from "reactstrap";
 
-import { api } from "../../../../config";
+import { api } from "../../../config";
 
 export const Item = (props) => {
   console.log(props.match.params.id);
@@ -42,7 +42,7 @@ export const Item = (props) => {
         <div>
           <h1> Pedidos do serviço</h1>
         </div>
-        {status.type == "error" ? (
+        {status.type === "error" ? (
           <Alert color="danger">{status.message}</Alert>
         ) : (
           ""
@@ -51,7 +51,7 @@ export const Item = (props) => {
         <Table striped>
           <thead>
             <tr>
-              <th>Pedido</th>
+              <th>PedidoID</th>
               <th>Quantidade</th>
               <th>Valor</th>
               <th>Visualizar</th>

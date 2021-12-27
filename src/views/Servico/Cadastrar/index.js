@@ -2,7 +2,7 @@ import axios from "axios";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Button, Container, Form, FormGroup, Input, Label, Alert } from "reactstrap";
-import { api } from "../../../../config";
+import { api } from "../../../config";
 
 export const CadastrarServico = () => {
   const [servico, setServico] = useState({
@@ -106,6 +106,7 @@ export const CadastrarServico = () => {
         <Button type="submit" outline color="success">
           Cadastrar
         </Button>
+        <Button type="reset" outline color="warning">Limpar</Button>
       </Form>
     </Container>
   );

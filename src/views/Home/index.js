@@ -10,17 +10,17 @@ export const Home = () => {
           </div>
         <div className="p-2">
           <a href="/listar-cliente" className="btn btn-outline-success btn-sm">
-            Cliente
+            Clientes
           </a>
         </div>
         <div className="p-2">
           <a href="/listar-pedido" className="btn btn-outline-success btn-sm">
-            Pedido
+            Pedidos
           </a>
         </div>
         <div className="p-2">
           <a href="/listar-servico" className="btn btn-outline-success btn-sm">
-            Serviço
+            Serviços
           </a>
         </div>
         </div>

@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Alert, Container, Table } from "reactstrap";
 
-import { api } from "../../../../config";
+import { api } from "../../../config";
 
 export const ListarServico = () => {
   const [data, setData] = useState([]);
@@ -43,7 +43,7 @@ export const ListarServico = () => {
           <div className=" m-auto p-2">
             <Link
               to="/cadastrarservico"
-              className="btn btn-outline-primary btn-sm"
+              className="btn btn-outline-success btn-sm"
             >
               Cadastrar
             </Link>
@@ -54,7 +54,7 @@ export const ListarServico = () => {
             ""
           )}
         </div>
-        <Table striped>
+        <Table striped className="text-center">
           <thead>
             <tr>
               <th>ID</th>
@@ -69,7 +69,7 @@ export const ListarServico = () => {
                 <td>{item.id}</td>
                 <td>{item.nome}</td>
                 <td>{item.descricao}</td>
-                <td className="text-center/">
+                <td >
                   <Link
                     to={"/listar-pedido/" + item.id}
                     className="btn btn-outline-primary btn-sm"
