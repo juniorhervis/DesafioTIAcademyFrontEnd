@@ -14,10 +14,10 @@ export const ListarPedido = () => {
 
   const getPedidos = async () => {
     axios
-      .get(api + "/listapedidos")
+      .get(api + "/listaitempedidos")
       .then((response) => {
-        console.log(response.data.pedidos);
-        setData(response.data.pedidos);
+        console.log(response.data.itens);
+        setData(response.data.itens);
       })
       .catch(() => {
         console.log("Erro: Sem conexão com a API.");
@@ -75,28 +75,31 @@ export const ListarPedido = () => {
         <Table striped className="text-center">
           <thead>
             <tr>
-              <th>ID</th>
-              <th>DataPedido</th>
-              <th>ClienteId</th>
+              <th>Pedido ID</th>
+              <th>Quantidade</th>
+              <th>Valor</th>
+              <th>Servico ID</th>
               <th>Ações</th>
             </tr>
           </thead>
           <tbody>
-            {data.map((pedidos) => (
-              <tr key={pedidos.id}>
-                <th scope="row">{pedidos.id}</th>
-                <td>{pedidos.dataPedido}</td>
-                <td>{pedidos.ClienteId}</td>
+            {data.map((itens) => (
+              <tr key={itens.PedidoId}>
+                <th scope="row">{itens.PedidoId}</th>
+                <td>{itens.quantidade}</td>
+                <td>{itens.valor}</td>
+                <td>{itens.ServicoId}</td>
                 <td>
                   <Link
-                    to={"/pedido-servico/" + pedidos.id}
-                    className="btn btn-outline-primary btn-sm "
+                    to={"/pedidos-cliente/" + itens.PedidoId}
+                    className="btn btn-outline-primary btn-sm"
                   >
                     Consultar
                   </Link>
+
                   <span
                     className="btn btn-outline-danger btn-sm"
-                    onClick={() => apagarPedido(pedidos.id)}
+                    onClick={() => apagarPedido(itens.id)}
                   >
                     Excluir
                   </span>

@@ -16,7 +16,7 @@ export const EditarPedidoCliente = (props) => {
   const [id, setId] = useState(props.match.params.id);
   const [dataPedido, setDataPedido] = useState("");
   const [ClienteId, setClienteId] = useState("");
-
+  console.log(props);
   const [status, setStatus] = useState({
     type: "",
     message: "",

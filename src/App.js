@@ -12,7 +12,7 @@ import { CadastrarServico } from "./views/Servico/Cadastrar/index.js";
 import { EditarPedidoCliente } from "./views/Clientes/EditarPedidoCliente/index.js";
 import { InserirCliente } from "./views/Clientes/InserirCliente/index.js";
 import { InserirPedido } from "./views/Pedido/InserirPedido";
-import { PedidosServico } from "./views/Pedido/PedidosServico";
+import { ItemPedido } from "./views/Pedido/Item";
 
 function App() {
   return (
@@ -21,7 +21,7 @@ function App() {
         <Menu />
         <Switch>
           <Route exact path="/" component={Home} />
-          <Router
+          <Route
             exact
             path="/editar-pedido/:id"
             component={EditarPedidoCliente}
@@ -30,7 +30,7 @@ function App() {
           <Route exact path="/listar-cliente" component={ListarCliente} />
           <Route exact path="/pedidos-cliente/:id" component={PedidosCliente} />
           <Route exact path="/inserir-pedido" component={InserirPedido} />
-          <Route exact path="/pedido-servico/:id" component={PedidosServico}/>
+          <Route exact path="/pedido-servico/:id" component={ItemPedido}/>
           <Route exact path="/listar-pedido" component={ListarPedido} />
           <Route exact path="/listar-servico" component={ListarServico} />
           <Route exact path="/cadastrarservico" component={CadastrarServico} />

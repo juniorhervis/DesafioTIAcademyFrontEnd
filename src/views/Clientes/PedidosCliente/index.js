@@ -53,8 +53,8 @@ export const PedidosCliente = (props) => {
         <Table striped>
           <thead>
             <tr>
-              <th>Id Pedido</th>
-              <th>Id Cliente</th>
+              <th>Pedido ID</th>
+              <th>Cliente ID</th>
               <th>Data do pedido</th>
             </tr>
           </thead>
