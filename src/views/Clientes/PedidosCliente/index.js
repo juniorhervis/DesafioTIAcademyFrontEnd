@@ -36,7 +36,7 @@ export const PedidosCliente = (props) => {
           <div className="p-2">
             <Link
               to="/listar-cliente"
-              className="btn btn-outline-success btn-sm"
+              className="btn btn-outline-primary btn-sm"
             >
               Clientes
             </Link>
@@ -44,7 +44,7 @@ export const PedidosCliente = (props) => {
           <div className="p-2">
             <Link
               to="/listar-pedido"
-              className="btn btn-outline-success btn-sm"
+              className="btn btn-outline-primary btn-sm"
             >
               Pedidos
             </Link>

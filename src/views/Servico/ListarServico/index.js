@@ -37,8 +37,8 @@ export const ListarServico = () => {
     <div>
       <Container>
         <div className="d-flex">
-          <div>
-            <h1> Visualizar informações do serviço</h1>
+          <div className="m-auto">
+            <h1> Visualizar Serviços</h1>
           </div>
           <div className=" m-auto p-2">
             <Link
@@ -57,10 +57,10 @@ export const ListarServico = () => {
         <Table striped className="text-center">
           <thead>
             <tr>
-              <th>ID</th>
+              <th>Serviço ID</th>
               <th>Nome</th>
               <th>Descrição</th>
-              <th>Ação</th>
+              <th>Ações</th>
             </tr>
           </thead>
           <tbody>

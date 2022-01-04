@@ -34,7 +34,7 @@ export const InserirCliente = () => {
     <div>
       <Container>
         <div className="d-flex">
-          <h1>Cadastrar Cliente</h1>
+          <h1 className="m-3">Cadastrar Cliente</h1>
           <div className="m-auto">
             <div className="p-2">
               <Link
@@ -52,7 +52,37 @@ export const InserirCliente = () => {
             <Input
               type="text"
               name="nome"
-              placeholder="nome do cliente"
+              placeholder="Nome"
+              required
+              onChange={valorInput}
+            />
+          </FormGroup>
+          <FormGroup className="p-2">
+            <Label>Endereço</Label>
+            <Input
+              type="text"
+              name="endereco"
+              placeholder="Endereço"
+              required
+              onChange={valorInput}
+            />
+          </FormGroup>
+          <FormGroup className="p-2">
+            <Label>Cidade</Label>
+            <Input
+              type="text"
+              name="cidade"
+              placeholder="Cidade"
+              required
+              onChange={valorInput}
+            />
+          </FormGroup>
+          <FormGroup className="p-2">
+            <Label>UF</Label>
+            <Input
+              type="text"
+              name="uf"
+              placeholder="UF"
               required
               onChange={valorInput}
             />
@@ -64,6 +94,15 @@ export const InserirCliente = () => {
               name="nascimento"
               placeholder="data de nascimento"
               required
+              onChange={valorInput}
+            />
+          </FormGroup>
+          <FormGroup className="p-2">
+            <Label>Cliente Desde</Label>
+            <Input
+              type="date"
+              name="clienteDesde"
+              placeholder="Cliente desde"
               onChange={valorInput}
             />
           </FormGroup>

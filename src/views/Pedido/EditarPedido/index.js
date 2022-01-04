@@ -12,7 +12,7 @@ import {
 } from "reactstrap";
 import { api } from "../../../config";
 
-export const EditarPedidoCliente = (props) => {
+export const EditarPedido = (props) => {
   const [id, setId] = useState(props.match.params.id);
   const [dataPedido, setDataPedido] = useState("");
   const [ClienteId, setClienteId] = useState("");
@@ -31,10 +31,7 @@ export const EditarPedidoCliente = (props) => {
 
     await axios
       .put(api + "/pedido/" + id, { id, dataPedido, ClienteId }, { headers })
-      .then((response) => {
-        console.log(response.data.error);
-        console.log(response.data.message);
-      })
+      .then((response) => {})
       .catch(() => {
         setStatus({
           type: "error",
@@ -63,12 +60,17 @@ export const EditarPedidoCliente = (props) => {
     <div>
       <Container>
         <div className="d-flex">
-          <h1>Editar pedido</h1>
-        </div>
-        <div className="p-2">
-          <Link to="/listar-cliente" className="btn btn-outline-success btn-sm">
-            Clientes
-          </Link>
+          <div className="m-auto p-2">
+            <h1>Editar Pedido</h1>
+          </div>
+          <div className="p-2">
+            <Link
+              to="/listar-pedido"
+              className="btn btn-outline-primary btn-sm"
+            >
+              Pedidos
+            </Link>
+          </div>
         </div>
         <hr className="m-1" />
         {status.type === "error" ? (
@@ -86,7 +88,7 @@ export const EditarPedidoCliente = (props) => {
           <FormGroup className="p-2">
             <Label>ID Pedido</Label>
             <Input
-              type="text"
+              type="number"
               name="id"
               placeholder="id do pedido"
               defaultValue={id}
@@ -95,7 +97,7 @@ export const EditarPedidoCliente = (props) => {
           <FormGroup className="p-2">
             <Label>Data</Label>
             <Input
-              type="text"
+              type="date"
               name="dataPedido"
               placeholder="data do pedido"
               value={dataPedido}
@@ -105,18 +107,14 @@ export const EditarPedidoCliente = (props) => {
           <FormGroup className="p-2">
             <Label>ClienteId</Label>
             <Input
-              type="text"
+              type="number"
               name="ClienteId"
               placeholder="id do cliente"
               defaultValue={ClienteId}
             />
           </FormGroup>
-
-          <Button type="submit" outline color="warning">
+          <Button type="submit" outline color="success">
             Salvar
-          </Button>
-          <Button type="reset" outline color="success">
-            Limpar
           </Button>
         </Form>
       </Container>

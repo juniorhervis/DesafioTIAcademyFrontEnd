@@ -34,7 +34,7 @@ export const InserirPedido = () => {
     <div>
       <Container>
         <div className="d-flex">
-          <h1>Cadastrar Pedido</h1>
+          <h1 className="m-3">Cadastrar Pedido</h1>
           <div className="m-auto">
             <div className="p-2">
               <Link

@@ -60,10 +60,10 @@ export const ListarCliente = () => {
           )}
         </div>
         <div className="d-flex">
-          <div>
+          <div className="m-auto p-2">
             <h1>Visualizar Clientes</h1>
           </div>
-          <div className="m-auto">
+          <div className="m-auto p-2">
             <Link
               to="/inserir-cliente"
               className="btn btn-outline-success btn-sm"
@@ -77,7 +77,8 @@ export const ListarCliente = () => {
             <tr className="text-center">
               <th>ID</th>
               <th>Nome</th>
-              <th>Nascimento</th>
+              <th>Endereço</th>
+              <th>Cidade</th>
               <th>Ações</th>
             </tr>
           </thead>
@@ -86,13 +87,14 @@ export const ListarCliente = () => {
               <tr key={clientes.id}>
                 <th scope="row">{clientes.id}</th>
                 <td>{clientes.nome}</td>
-                <td>{clientes.nascimento}</td>
+                <td>{clientes.endereco}</td>
+                <td>{clientes.cidade}</td>
                 <td>
                   <Link
-                    to={"/pedidos-cliente/" + clientes.id}
-                    className="btn btn-outline-primary btn-sm"
+                    to={"/editar-cliente/" + clientes.id}
+                    className="btn btn-outline-warning btn-sm"
                   >
-                    Consultar
+                    Editar
                   </Link>
                   <span
                     className="btn btn-outline-danger btn-sm"

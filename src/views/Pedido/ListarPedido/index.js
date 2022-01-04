@@ -14,10 +14,10 @@ export const ListarPedido = () => {
 
   const getPedidos = async () => {
     axios
-      .get(api + "/listaitempedidos")
+      .get(api + "/listapedidos")
       .then((response) => {
-        console.log(response.data.itens);
-        setData(response.data.itens);
+        console.log(response.data.pedidos);
+        setData(response.data.pedidos);
       })
       .catch(() => {
         console.log("Erro: Sem conexão com a API.");
@@ -60,7 +60,7 @@ export const ListarPedido = () => {
           )}
         </div>
         <div className="d-flex">
-          <div>
+          <div className="m-auto">
             <h1>Visualizar Pedidos</h1>
           </div>
           <div className="m-auto p-2">
@@ -76,30 +76,28 @@ export const ListarPedido = () => {
           <thead>
             <tr>
               <th>Pedido ID</th>
-              <th>Quantidade</th>
-              <th>Valor</th>
-              <th>Servico ID</th>
+              <th>Data do Pedido</th>
+              <th>ClienteId</th>
               <th>Ações</th>
             </tr>
           </thead>
           <tbody>
-            {data.map((itens) => (
-              <tr key={itens.PedidoId}>
-                <th scope="row">{itens.PedidoId}</th>
-                <td>{itens.quantidade}</td>
-                <td>{itens.valor}</td>
-                <td>{itens.ServicoId}</td>
+            {data.map((pedidos) => (
+              <tr key={pedidos.id}>
+                <th>{pedidos.id}</th>
+                <td>{pedidos.dataPedido}</td>
+                <td>{pedidos.ClienteId}</td>
                 <td>
                   <Link
-                    to={"/pedidos-cliente/" + itens.PedidoId}
-                    className="btn btn-outline-primary btn-sm"
+                    to={"/editar-pedido/" + pedidos.id}
+                    className="btn btn-outline-warning btn-sm"
                   >
-                    Consultar
+                    Editar
                   </Link>
 
                   <span
                     className="btn btn-outline-danger btn-sm"
-                    onClick={() => apagarPedido(itens.id)}
+                    onClick={() => apagarPedido(pedidos.id)}
                   >
                     Excluir
                   </span>
