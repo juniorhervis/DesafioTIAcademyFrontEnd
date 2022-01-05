@@ -1,5 +1,6 @@
 import axios from "axios";
-import { useState } from "react/cjs/react.development";
+import { useState } from "react";
+import { Link } from "react-router-dom";
 import {
   Button,
   Container,
@@ -9,13 +10,12 @@ import {
   Label,
   Alert,
 } from "reactstrap";
-import { Link } from "react-router-dom";
 import { api } from "../../../config";
 
-export const InserirPedido = () => {
-  const [pedido, setPedido] = useState({
+export const InserirServico = () => {
+  const [servico, setServico] = useState({
     nome: "",
-    nascimento: "",
+    descricao: "",
   });
 
   const [status, setStatus] = useState({
@@ -24,17 +24,19 @@ export const InserirPedido = () => {
   });
 
   const valorInput = (e) =>
-    setPedido({ ...pedido, [e.target.name]: e.target.value });
+    setServico({
+      ...servico,
+      [e.target.name]: e.target.value,
+    });
 
-  const cadPedido = async (e) => {
+  const cadServico = async (e) => {
     e.preventDefault();
 
     const headers = {
       "Content-Type": "application/json",
     };
-
     await axios
-      .post(api + "/pedido", pedido, { headers })
+      .post(api + "/servico", servico, { headers })
       .then((response) => {
         if (response.data.error) {
           setStatus({
@@ -60,51 +62,55 @@ export const InserirPedido = () => {
     <Container>
       <div className="d-flex">
         <div className="m-auto p-2">
-          <h1>Cadastrar pedido</h1>
+          <h1>Cadastrar Serviço</h1>
         </div>
         <div className="p-2">
-          <Link to="/listar-pedido" className="btn btn-outline-success btn-sm">
-            Pedidos
+          <Link to="/listar-servico" className="btn btn-outline-primary btn-sm">
+            Serviços
           </Link>
         </div>
       </div>
       <hr className="m-1" />
-
       {status.type === "error" ? (
-        <Alert className="m-3" color="danger">{status.message}</Alert>
+        <Alert className="m-3" color="danger">
+          {status.message}
+        </Alert>
       ) : (
-        ""
+        " "
       )}
-
       {status.type === "success" ? (
-        <Alert className="m-3" color="success">{status.message}</Alert>
+        <Alert className="m-3" color="success">
+          {status.message}
+        </Alert>
+      ) : (
+        " "
+      )}
+      {status.type === "404" ? (
+        <Alert className="m-3" color="danger">
+          {status.message}
+        </Alert>
       ) : (
         ""
       )}
 
-      {status.type === "404" ? (
-        <Alert className="m-3" color="danger">{status.message}</Alert>
-      ) : (
-        ""
-      )}
-      <Form className="p-2" onSubmit={cadPedido}>
+      <Form className="p-2" onSubmit={cadServico}>
         <FormGroup className="p-2">
-          <Label>Data do Pedido</Label>
+          <Label>Nome</Label>
           <Input
-            type="date"
-            name="dataPedido"
-            placeholder="Data do Pedido"
+            name="nome"
             required
+            placeholder="Nome do Serviço"
+            type="text"
             onChange={valorInput}
           />
         </FormGroup>
         <FormGroup className="p-2">
-          <Label>Id do Cliente</Label>
+          <Label>Descrição</Label>
           <Input
-            type="text"
-            name="ClienteId"
-            placeholder="Id do Cliente"
+            name="descricao"
             required
+            placeholder="Descrição do Serviço"
+            type="text"
             onChange={valorInput}
           />
         </FormGroup>

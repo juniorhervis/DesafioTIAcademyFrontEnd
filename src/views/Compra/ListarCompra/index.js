@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { Alert, Container, Table } from "reactstrap";
 import { api } from "../../../config";
 
-export const ListarPedido = () => {
+export const ListarCompra = () => {
   const [data, setData] = useState([]);
 
   const [status, setStatus] = useState({
@@ -12,30 +12,30 @@ export const ListarPedido = () => {
     message: "",
   });
 
-  const getPedidos = async () => {
+  const getCompras = async () => {
     axios
-      .get(api + "/listapedidos")
+      .get(api + "/listacompras")
       .then((response) => {
-        console.log(response.data.pedidos);
-        setData(response.data.pedidos);
+        console.log(response.data.compras);
+        setData(response.data.compras);
       })
       .catch(() => {
         console.log("Erro: Sem conexão com a API.");
       });
   };
 
-  const apagarPedido = async (idPedido) => {
-    console.log(idPedido);
+  const apagarCompra = async (idCompra) => {
+    console.log(idCompra);
 
     const headers = {
       "Content-type": "application/json",
     };
 
     await axios
-      .get(api + "/excluirpedido/" + idPedido, { headers })
+      .get(api + "/excluircompra/" + idCompra, { headers })
       .then((response) => {
         console.log(response.data.error);
-        getPedidos();
+        getCompras();
       })
       .catch(() => {
         setStatus({
@@ -46,7 +46,7 @@ export const ListarPedido = () => {
   };
 
   useEffect(() => {
-    getPedidos();
+    getCompras();
   }, []);
 
   return (
@@ -61,11 +61,11 @@ export const ListarPedido = () => {
         </div>
         <div className="d-flex">
           <div className="m-auto">
-            <h1>Visualizar Pedidos</h1>
+            <h1>Visualizar Compras</h1>
           </div>
           <div className="m-auto p-2">
             <Link
-              to="/inserir-pedido"
+              to="/inserir-compra"
               className="btn btn-outline-success btn-sm"
             >
               Cadastrar
@@ -75,21 +75,21 @@ export const ListarPedido = () => {
         <Table striped className="text-center">
           <thead>
             <tr>
-              <th>Pedido ID</th>
-              <th>Data do Pedido</th>
+              <th>Compra ID</th>
+              <th>Data da Compra</th>
               <th>Cliente ID</th>
               <th>Ações</th>
             </tr>
           </thead>
           <tbody>
-            {data.map((pedidos) => (
-              <tr key={pedidos.id}>
-                <th>{pedidos.id}</th>
-                <td>{pedidos.dataPedido}</td>
-                <td>{pedidos.ClienteId}</td>
+            {data.map((compras) => (
+              <tr key={compras.id}>
+                <th>{compras.id}</th>
+                <td>{compras.data}</td>
+                <td>{compras.ClienteId}</td>
                 <td>
                   <Link
-                    to={"/editar-pedido/" + pedidos.id}
+                    to={"/editar-compra/" + compras.id}
                     className="btn btn-outline-warning btn-sm"
                   >
                     Editar
@@ -97,7 +97,7 @@ export const ListarPedido = () => {
 
                   <span
                     className="btn btn-outline-danger btn-sm"
-                    onClick={() => apagarPedido(pedidos.id)}
+                    onClick={() => apagarCompra(compras.id)}
                   >
                     Excluir
                   </span>

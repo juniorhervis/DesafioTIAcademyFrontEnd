@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useState } from "react/cjs/react.development";
-import { Button, Container, Form, FormGroup, Input, Label } from "reactstrap";
+import { Button, Container, Form, FormGroup, Input, Label, Alert } from "reactstrap";
 import { Link } from "react-router-dom";
 import { api } from "../../../config";
 
@@ -8,6 +8,11 @@ export const InserirCliente = () => {
   const [cliente, setCliente] = useState({
     nome: "",
     nascimento: "",
+  });
+
+  const [status, setStatus] = useState({
+    type: "",
+    message: "",
   });
 
   const valorInput = (e) =>
@@ -23,20 +28,34 @@ export const InserirCliente = () => {
     await axios
       .post(api + "/cliente", cliente, { headers })
       .then((response) => {
-        console.log(response.data.message);
+        if (response.data.error) {
+          setStatus({
+            type: "error",
+            message: response.data.message,
+          });
+        } else {
+          setStatus({
+            type: "success",
+            message: response.data.message,
+          });
+        }
       })
       .catch(() => {
-        console.log("Erro: Sem conexão com a API.");
+        setStatus({
+          type: "404",
+          message: "Sem conexão com a API.",
+        });
       });
   };
 
   return (
     <div>
       <Container>
-        <div className="d-flex">
-          <h1 className="m-3">Cadastrar Cliente</h1>
-          <div className="m-auto">
-            <div className="p-2">
+      <div className="d-flex">
+        <div className="m-auto p-2">
+          <h1>Cadastrar Cliente</h1>
+        </div>
+        <div className="p-2">
               <Link
                 to="/listar-cliente"
                 className="btn btn-outline-success btn-sm"
@@ -45,7 +64,25 @@ export const InserirCliente = () => {
               </Link>
             </div>
           </div>
-        </div>
+        <hr className="m-1" />
+
+      {status.type === "error" ? (
+        <Alert className="m-3" color="danger">{status.message}</Alert>
+      ) : (
+        ""
+      )}
+
+      {status.type === "success" ? (
+        <Alert className="m-3" color="success">{status.message}</Alert>
+      ) : (
+        ""
+      )}
+
+      {status.type === "404" ? (
+        <Alert className="m-3" color="danger">{status.message}</Alert>
+      ) : (
+        ""
+      )}
         <Form className="p-2" onSubmit={cadCliente}>
           <FormGroup className="p-2">
             <Label>Nome</Label>

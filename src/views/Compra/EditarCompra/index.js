@@ -12,9 +12,9 @@ import {
 } from "reactstrap";
 import { api } from "../../../config";
 
-export const EditarPedido = (props) => {
+export const EditarCompra = (props) => {
   const [id, setId] = useState(props.match.params.id);
-  const [dataPedido, setDataPedido] = useState("");
+  const [data, setData] = useState("");
   const [ClienteId, setClienteId] = useState("");
   console.log(props);
   const [status, setStatus] = useState({
@@ -22,7 +22,7 @@ export const EditarPedido = (props) => {
     message: "",
   });
 
-  const edtPedido = async (e) => {
+  const edtCompra = async (e) => {
     e.preventDefault();
 
     const headers = {
@@ -30,7 +30,7 @@ export const EditarPedido = (props) => {
     };
 
     await axios
-      .put(api + "/atualizapedido/" + id, { id, dataPedido, ClienteId }, { headers })
+      .put(api + "/atualizacompra/" + id, { id, data, ClienteId }, { headers })
       .then((response) => {
         if (response.data.error) {
           setStatus({
@@ -53,19 +53,19 @@ export const EditarPedido = (props) => {
   };
 
   useEffect(() => {
-    const getPedido = async () => {
+    const getCompra = async () => {
       await axios
-        .get(api + "/pedido/" + id)
+        .get(api + "/compra/" + id)
         .then((response) => {
-          setId(response.data.pedido.id);
-          setDataPedido(response.data.pedido.dataPedido);
-          setClienteId(response.data.pedido.ClienteId);
+          setId(response.data.compra.id);
+          setData(response.data.compra.data);
+          setClienteId(response.data.compra.ClienteId);
         })
         .catch(() => {
           console.log("Erro: não foi possível se conectar a API.");
         });
     };
-    getPedido();
+    getCompra();
   }, [id]);
 
   return (
@@ -73,14 +73,14 @@ export const EditarPedido = (props) => {
       <Container>
         <div className="d-flex">
           <div className="m-auto p-2">
-            <h1>Editar Pedido</h1>
+            <h1>Editar Compra</h1>
           </div>
           <div className="p-2">
             <Link
-              to="/listar-pedido"
+              to="/listar-compra"
               className="btn btn-outline-primary btn-sm"
             >
-              Pedidos
+              Compras
             </Link>
           </div>
           <div className="p-2">
@@ -104,13 +104,13 @@ export const EditarPedido = (props) => {
           " "
         )}
 
-        <Form className="p-2" onSubmit={edtPedido}>
+        <Form className="p-2" onSubmit={edtCompra}>
           <FormGroup className="p-2">
-            <Label>ID Pedido</Label>
+            <Label>ID Compra</Label>
             <Input
               type="number"
               name="id"
-              placeholder="id do pedido"
+              placeholder="id da compra"
               defaultValue={id}
             />
           </FormGroup>
@@ -118,14 +118,14 @@ export const EditarPedido = (props) => {
             <Label>Data</Label>
             <Input
               type="date"
-              name="dataPedido"
-              placeholder="data do pedido"
-              value={dataPedido}
-              onChange={(e) => setDataPedido(e.target.value)}
+              name="data"
+              placeholder="data da compra"
+              value={data}
+              onChange={(e) => setData(e.target.value)}
             />
           </FormGroup>
           <FormGroup className="p-2">
-            <Label>Cliente ID</Label>
+            <Label>ClienteId</Label>
             <Input
               type="number"
               name="ClienteId"

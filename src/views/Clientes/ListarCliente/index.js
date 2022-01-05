@@ -52,7 +52,7 @@ export const ListarCliente = () => {
   return (
     <div>
       <Container>
-        <div className="p-2">
+      <div className="p-2">
           {status.type === "error" ? (
             <Alert color="danger">{status.message}</Alert>
           ) : (
@@ -60,7 +60,7 @@ export const ListarCliente = () => {
           )}
         </div>
         <div className="d-flex">
-          <div className="m-auto p-2">
+          <div className="m-auto">
             <h1>Visualizar Clientes</h1>
           </div>
           <div className="m-auto p-2">
@@ -75,7 +75,7 @@ export const ListarCliente = () => {
         <Table striped>
           <thead>
             <tr className="text-center">
-              <th>ID</th>
+              <th>Cliente ID</th>
               <th>Nome</th>
               <th>Endereço</th>
               <th>Cidade</th>

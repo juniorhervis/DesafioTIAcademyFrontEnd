@@ -35,15 +35,27 @@ export const EditarCliente = (props) => {
 
     await axios
       .put(
-        api + "/cliente/" + id,
+        api + "/atualizacliente/" + id,
         { id, nome, endereco, cidade, uf, nascimento, clienteDesde },
         { headers }
       )
-      .then((response) => {})
+      .then((response) => {
+        if (response.data.error) {
+          setStatus({
+            type: "error",
+            message: response.data.message,
+          });
+        } else {
+          setStatus({
+            type: "success",
+            message: response.data.message,
+          });
+        }
+      })
       .catch(() => {
         setStatus({
-          type: "error",
-          message: "Não foi possível conectar a API.",
+          type: "404",
+          message: "Sem conexão com a API.",
         });
       });
   };
@@ -94,19 +106,26 @@ export const EditarCliente = (props) => {
         </div>
         <hr className="m-1" />
         {status.type === "error" ? (
-          <Alert color="danger">{status.message}</Alert>
+          <Alert className="m-3" color="danger">{status.message}</Alert>
         ) : (
           " "
         )}
         {status.type === "success" ? (
-          <Alert color="success">{status.message}</Alert>
+          <Alert className="m-3" color="success">{status.message}</Alert>
         ) : (
           " "
+        )}
+        {status.type === "404" ? (
+          <Alert className="m-3" color="danger">
+            {status.message}
+          </Alert>
+        ) : (
+          ""
         )}
 
         <Form className="p-2" onSubmit={edtCliente}>
           <FormGroup className="p-2">
-            <Label>ID Cliente</Label>
+            <Label>Cliente ID</Label>
             <Input
               disabled
               type="number"

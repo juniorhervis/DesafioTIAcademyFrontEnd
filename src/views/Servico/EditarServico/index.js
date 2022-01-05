@@ -12,17 +12,17 @@ import {
 } from "reactstrap";
 import { api } from "../../../config";
 
-export const EditarPedido = (props) => {
+export const EditarServico = (props) => {
   const [id, setId] = useState(props.match.params.id);
-  const [dataPedido, setDataPedido] = useState("");
-  const [ClienteId, setClienteId] = useState("");
+  const [nome, setNome] = useState("");
+  const [descricao, setDescricao] = useState("");
   console.log(props);
   const [status, setStatus] = useState({
     type: "",
     message: "",
   });
 
-  const edtPedido = async (e) => {
+  const edtServico = async (e) => {
     e.preventDefault();
 
     const headers = {
@@ -30,7 +30,7 @@ export const EditarPedido = (props) => {
     };
 
     await axios
-      .put(api + "/atualizapedido/" + id, { id, dataPedido, ClienteId }, { headers })
+      .put(api + "/atualizaservico/" + id, { id, nome, descricao }, { headers })
       .then((response) => {
         if (response.data.error) {
           setStatus({
@@ -53,19 +53,19 @@ export const EditarPedido = (props) => {
   };
 
   useEffect(() => {
-    const getPedido = async () => {
+    const getServico = async () => {
       await axios
-        .get(api + "/pedido/" + id)
+        .get(api + "/servico/" + id)
         .then((response) => {
-          setId(response.data.pedido.id);
-          setDataPedido(response.data.pedido.dataPedido);
-          setClienteId(response.data.pedido.ClienteId);
+          setId(response.data.servico.id);
+          setNome(response.data.servico.nome);
+          setDescricao(response.data.servico.descricao);
         })
         .catch(() => {
           console.log("Erro: não foi possível se conectar a API.");
         });
     };
-    getPedido();
+    getServico();
   }, [id]);
 
   return (
@@ -73,14 +73,14 @@ export const EditarPedido = (props) => {
       <Container>
         <div className="d-flex">
           <div className="m-auto p-2">
-            <h1>Editar Pedido</h1>
+            <h1>Editar Servico</h1>
           </div>
           <div className="p-2">
             <Link
-              to="/listar-pedido"
+              to="/listar-servico"
               className="btn btn-outline-primary btn-sm"
             >
-              Pedidos
+              Serviços
             </Link>
           </div>
           <div className="p-2">
@@ -91,46 +91,67 @@ export const EditarPedido = (props) => {
               Clientes
             </Link>
           </div>
+          <div className="p-2">
+            <Link
+              to="/listar-pedido"
+              className="btn btn-outline-primary btn-sm"
+            >
+              Pedidos
+            </Link>
+          </div>
         </div>
         <hr className="m-1" />
         {status.type === "error" ? (
-          <Alert className="m-3" color="danger">{status.message}</Alert>
+          <Alert className="m-3" color="danger">
+            {status.message}
+          </Alert>
         ) : (
           " "
         )}
         {status.type === "success" ? (
-          <Alert className="m-3" color="success">{status.message}</Alert>
+          <Alert className="m-3" color="success">
+            {status.message}
+          </Alert>
         ) : (
           " "
         )}
+        {status.type === "404" ? (
+          <Alert className="m-3" color="danger">
+            {status.message}
+          </Alert>
+        ) : (
+          ""
+        )}
 
-        <Form className="p-2" onSubmit={edtPedido}>
+        <Form className="p-2" onSubmit={edtServico}>
           <FormGroup className="p-2">
-            <Label>ID Pedido</Label>
+            <Label>Serviço ID</Label>
             <Input
               type="number"
               name="id"
-              placeholder="id do pedido"
+              disabled
+              placeholder="id do servico"
               defaultValue={id}
             />
           </FormGroup>
           <FormGroup className="p-2">
-            <Label>Data</Label>
+            <Label>Serviço</Label>
             <Input
-              type="date"
-              name="dataPedido"
-              placeholder="data do pedido"
-              value={dataPedido}
-              onChange={(e) => setDataPedido(e.target.value)}
+              type="text"
+              name="nome"
+              placeholder="Nome do Serviço"
+              value={nome}
+              onChange={(e) => setNome(e.target.value)}
             />
           </FormGroup>
           <FormGroup className="p-2">
-            <Label>Cliente ID</Label>
+            <Label>Descrição</Label>
             <Input
-              type="number"
-              name="ClienteId"
-              placeholder="id do cliente"
-              defaultValue={ClienteId}
+              type="text"
+              name="descricao"
+              placeholder="Descrição do Serviço"
+              defaultValue={descricao}
+              onChange={(e) => setDescricao(e.target.value)}
             />
           </FormGroup>
           <Button type="submit" outline color="success">

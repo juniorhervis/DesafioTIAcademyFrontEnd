@@ -1,13 +1,21 @@
 import axios from "axios";
-import { useState } from "react";
+import { useState } from "react/cjs/react.development";
+import {
+  Button,
+  Container,
+  Form,
+  FormGroup,
+  Input,
+  Label,
+  Alert,
+} from "reactstrap";
 import { Link } from "react-router-dom";
-import { Button, Container, Form, FormGroup, Input, Label, Alert } from "reactstrap";
 import { api } from "../../../config";
 
-export const CadastrarServico = () => {
-  const [servico, setServico] = useState({
+export const InserirCompra = () => {
+  const [compra, setCompra] = useState({
     nome: "",
-    descricao: "",
+    nascimento: "",
   });
 
   const [status, setStatus] = useState({
@@ -16,19 +24,17 @@ export const CadastrarServico = () => {
   });
 
   const valorInput = (e) =>
-    setServico({
-      ...servico,
-      [e.target.name]: e.target.value,
-    });
+    setCompra({ ...compra, [e.target.name]: e.target.value });
 
-  const cadServico = async (e) => {
+  const cadCompra = async (e) => {
     e.preventDefault();
 
     const headers = {
       "Content-Type": "application/json",
     };
+
     await axios
-      .post(api + "/servicos", servico, { headers })
+      .post(api + "/compra", compra, { headers })
       .then((response) => {
         if (response.data.error) {
           setStatus({
@@ -44,9 +50,9 @@ export const CadastrarServico = () => {
       })
       .catch(() => {
         setStatus({
-            type: "404",
-            message: "Sem conexão com a API.",
-          });
+          type: "404",
+          message: "Sem conexão com a API.",
+        });
       });
   };
 
@@ -54,59 +60,60 @@ export const CadastrarServico = () => {
     <Container>
       <div className="d-flex">
         <div className="m-auto p-2">
-          <h1>Cadastrar Serviço</h1>
+          <h1>Cadastrar compra</h1>
         </div>
         <div className="p-2">
-          <Link to="/listar-servico" className="btn btn-outline-success btn-sm">
-            Serviços
+          <Link to="/listar-compra" className="btn btn-outline-success btn-sm">
+            Compras
           </Link>
         </div>
       </div>
       <hr className="m-1" />
 
       {status.type === "error" ? (
-        <Alert color="danger">{status.message}</Alert>
+        <Alert className="m-3" color="danger">{status.message}</Alert>
       ) : (
         ""
       )}
 
       {status.type === "success" ? (
-        <Alert color="success">{status.message}</Alert>
+        <Alert className="m-3" color="success">{status.message}</Alert>
       ) : (
         ""
       )}
 
-{status.type === "404" ? (
-        <Alert color="danger">{status.message}</Alert>
+      {status.type === "404" ? (
+        <Alert className="m-3" color="danger">{status.message}</Alert>
       ) : (
         ""
       )}
-
-      <Form className="p-2" onSubmit={cadServico}>
+      <Form className="p-2" onSubmit={cadCompra}>
         <FormGroup className="p-2">
-          <Label>Nome</Label>
+          <Label>Data do Compra</Label>
           <Input
-            name="nome"
+            type="date"
+            name="data"
+            placeholder="Data da Compra"
             required
-            placeholder="Nome do Serviço"
-            type="text"
             onChange={valorInput}
           />
         </FormGroup>
         <FormGroup className="p-2">
-          <Label>Descrição</Label>
+          <Label>Id do Cliente</Label>
           <Input
-            name="descricao"
-            required
-            placeholder="Descrição do Serviço"
             type="text"
+            name="ClienteId"
+            placeholder="Id do Cliente"
+            required
             onChange={valorInput}
           />
         </FormGroup>
         <Button type="submit" outline color="success">
           Cadastrar
         </Button>
-        <Button type="reset" outline color="warning">Limpar</Button>
+        <Button type="reset" outline color="warning">
+          Limpar
+        </Button>
       </Form>
     </Container>
   );
