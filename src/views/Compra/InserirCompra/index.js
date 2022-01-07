@@ -108,7 +108,7 @@ export const InserirCompra = () => {
             onChange={valorInput}
           />
         </FormGroup>
-        <Button type="submit" outline color="success">
+        <Button className="m-2" type="submit" outline color="success">
           Cadastrar
         </Button>
         <Button type="reset" outline color="warning">

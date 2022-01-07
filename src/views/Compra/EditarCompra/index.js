@@ -133,7 +133,7 @@ export const EditarCompra = (props) => {
               defaultValue={ClienteId}
             />
           </FormGroup>
-          <Button type="submit" outline color="success">
+          <Button className="m-2" type="submit" outline color="success">
             Salvar
           </Button>
         </Form>

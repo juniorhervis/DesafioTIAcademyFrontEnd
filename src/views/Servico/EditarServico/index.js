@@ -69,7 +69,6 @@ export const EditarServico = (props) => {
   }, [id]);
 
   return (
-    <div>
       <Container>
         <div className="d-flex">
           <div className="m-auto p-2">
@@ -130,7 +129,7 @@ export const EditarServico = (props) => {
               type="number"
               name="id"
               disabled
-              placeholder="id do servico"
+              placeholder="ID do Produto"
               defaultValue={id}
             />
           </FormGroup>
@@ -154,11 +153,10 @@ export const EditarServico = (props) => {
               onChange={(e) => setDescricao(e.target.value)}
             />
           </FormGroup>
-          <Button type="submit" outline color="success">
+          <Button className="m-2" type="submit" outline color="success">
             Salvar
           </Button>
         </Form>
       </Container>
-    </div>
   );
 };

@@ -90,7 +90,7 @@ export const ListarCompra = () => {
                 <td>
                   <Link
                     to={"/editar-compra/" + compras.id}
-                    className="btn btn-outline-warning btn-sm"
+                    className="m-1 btn btn-outline-warning btn-sm"
                   >
                     Editar
                   </Link>
