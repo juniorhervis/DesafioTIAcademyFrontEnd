@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { Alert, Container, Table } from "reactstrap";
 import { api } from "../../../config";
 
-export const ListarPedido = () => {
+export const ListarItemPedido = () => {
   const [data, setData] = useState([]);
 
   const [status, setStatus] = useState({
@@ -12,19 +12,19 @@ export const ListarPedido = () => {
     message: "",
   });
 
-  const getPedidos = async () => {
+  const getItensPedidos = async () => {
     axios
-      .get(api + "/listapedidos")
+      .get(api + "/listaitempedidos")
       .then((response) => {
-        console.log(response.data.pedidos);
-        setData(response.data.pedidos);
+        console.log(response.data.itens);
+        setData(response.data.itens);
       })
       .catch(() => {
         console.log("Erro: Sem conexão com a API.");
       });
   };
 
-  const apagarPedido = async (idPedido) => {
+  const apagarItemPedido = async (idPedido) => {
     console.log(idPedido);
 
     const headers = {
@@ -32,21 +32,21 @@ export const ListarPedido = () => {
     };
 
     await axios
-      .get(api + "/excluirpedido/" + idPedido, { headers })
+      .get(api + "/excluiritem/pedido/" + idPedido, { headers })
       .then((response) => {
         console.log(response.data.error);
-        getPedidos();
+        getItensPedidos();
       })
       .catch(() => {
         setStatus({
           type: "error",
-          message: "Não foi possível conetar-se a API.",
+          message: "Não foi possível conectar=se a API.",
         });
       });
   };
 
   useEffect(() => {
-    getPedidos();
+    getItensPedidos();
   }, []);
 
   return (
@@ -54,18 +54,20 @@ export const ListarPedido = () => {
       <Container>
         <div className="p-2">
           {status.type === "error" ? (
-            <Alert color="danger">{status.message}</Alert>
+            <Alert className="m-3" color="danger">
+              {status.message}
+            </Alert>
           ) : (
             " "
           )}
         </div>
         <div className="d-flex">
           <div className="m-auto">
-            <h1>Visualizar Pedidos</h1>
+            <h1>Visualizar Itens Pedidos</h1>
           </div>
           <div className="m-auto p-2">
             <Link
-              to="/inserir-pedido"
+              to="/inserir-itempedido"
               className="btn btn-outline-success btn-sm"
             >
               Cadastrar
@@ -76,28 +78,29 @@ export const ListarPedido = () => {
           <thead>
             <tr>
               <th>Pedido ID</th>
-              <th>Data do Pedido</th>
-              <th>Cliente ID</th>
+              <th>Serviço ID</th>
+              <th>Quantidade</th>
+              <th>Valor</th>
               <th>Ações</th>
             </tr>
           </thead>
           <tbody>
-            {data.map((pedidos) => (
-              <tr key={pedidos.id}>
-                <th>{pedidos.id}</th>
-                <td>{pedidos.dataPedido}</td>
-                <td>{pedidos.ClienteId}</td>
+            {data.map((itens) => (
+              <tr key={itens.PedidoId}>
+                <td>{itens.PedidoId}</td>
+                <td>{itens.ServicoId}</td>
+                <td> {itens.quantidade} </td>
+                <td> {itens.valor} </td>
                 <td>
                   <Link
-                    to={"/editar-pedido/" + pedidos.id}
+                    to={"/editar-itempedido/" + itens.PedidoId}
                     className="m-1 btn btn-outline-warning btn-sm"
                   >
                     Editar
                   </Link>
-
                   <span
                     className="btn btn-outline-danger btn-sm"
-                    onClick={() => apagarPedido(pedidos.id)}
+                    onClick={() => apagarItemPedido(itens.PedidoId)}
                   >
                     Excluir
                   </span>

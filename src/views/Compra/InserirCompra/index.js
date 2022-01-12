@@ -15,7 +15,7 @@ import { api } from "../../../config";
 export const InserirCompra = () => {
   const [compra, setCompra] = useState({
     nome: "",
-    nascimento: "",
+    data: "",
   });
 
   const [status, setStatus] = useState({
@@ -89,7 +89,7 @@ export const InserirCompra = () => {
       )}
       <Form className="p-2" onSubmit={cadCompra}>
         <FormGroup className="p-2">
-          <Label>Data do Compra</Label>
+          <Label>Data do Compra:</Label>
           <Input
             type="date"
             name="data"
@@ -99,7 +99,7 @@ export const InserirCompra = () => {
           />
         </FormGroup>
         <FormGroup className="p-2">
-          <Label>Id do Cliente</Label>
+          <Label>Id do Cliente:</Label>
           <Input
             type="text"
             name="ClienteId"

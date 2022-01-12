@@ -12,17 +12,18 @@ import {
 } from "reactstrap";
 import { api } from "../../../config";
 
-export const EditarCompra = (props) => {
+export const EditarItemPedido = (props) => {
   const [id, setId] = useState(props.match.params.id);
-  const [data, setData] = useState("");
-  const [ClienteId, setClienteId] = useState("");
+  const [quantidade, setQuantidade] = useState("");
+  const [valor, setValor] = useState("");
+  const [ServicoId, setServicoId] = useState("");
   console.log(props);
   const [status, setStatus] = useState({
     type: "",
     message: "",
   });
 
-  const edtCompra = async (e) => {
+  const edtItemPedido = async (e) => {
     e.preventDefault();
 
     const headers = {
@@ -30,7 +31,11 @@ export const EditarCompra = (props) => {
     };
 
     await axios
-      .put(api + "/atualizacompra/" + id, { id, data, ClienteId }, { headers })
+      .put(
+        api + "/editarItem/pedido/" + id,
+        { id, quantidade, valor, ServicoId },
+        { headers }
+      )
       .then((response) => {
         if (response.data.error) {
           setStatus({
@@ -50,22 +55,22 @@ export const EditarCompra = (props) => {
           message: "Sem conexão com a API.",
         });
       });
-  };
-
+  }
   useEffect(() => {
-    const getCompra = async () => {
+    const getItemPedido = async () => {
       await axios
-        .get(api + "/compra/" + id)
+        .get(api + "/itempedido/pedido/" + id)
         .then((response) => {
-          setId(response.data.compra.id);
-          setData(response.data.compra.data);
-          setClienteId(response.data.compra.ClienteId);
+          setId(response.data.pedidos.id);
+          setQuantidade(response.data.pedidos.item_pedidos.quantidade);
+          setValor(response.data.pedidos.item_pedidos.valor);
+          setServicoId(response.data.pedidos.item_pedidos.ServicoId)
         })
         .catch(() => {
           console.log("Erro: não foi possível se conectar a API.");
         });
     };
-    getCompra();
+    getItemPedido();
   }, [id]);
 
   return (
@@ -73,14 +78,14 @@ export const EditarCompra = (props) => {
       <Container>
         <div className="d-flex">
           <div className="m-auto p-2">
-            <h1>Editar Compra</h1>
+            <h1>Editar Item Pedido</h1>
           </div>
           <div className="p-2">
             <Link
-              to="/listar-compra"
+              to="/listar-pedido"
               className="btn btn-outline-primary btn-sm"
             >
-              Compras
+              Pedidos
             </Link>
           </div>
           <div className="p-2">
@@ -104,33 +109,43 @@ export const EditarCompra = (props) => {
           " "
         )}
 
-        <Form className="p-2" onSubmit={edtCompra}>
+        <Form className="p-2" onSubmit={edtItemPedido}>
           <FormGroup className="p-2">
-            <Label>ID Compra</Label>
+            <Label>ID Pedido:</Label>
             <Input
               type="number"
               name="id"
-              placeholder="id da compra"
+              placeholder="id do pedido"
               defaultValue={id}
             />
           </FormGroup>
           <FormGroup className="p-2">
-            <Label>Data:</Label>
+            <Label>Quantidade:</Label>
             <Input
-              type="date"
-              name="data"
-              placeholder="data da compra"
-              value={data}
-              onChange={(e) => setData(e.target.value)}
+              type="number"
+              name="quantidade"
+              placeholder="data do pedido"
+              value={quantidade}
+              onChange={(e) => setQuantidade(e.target.value)}
             />
           </FormGroup>
           <FormGroup className="p-2">
-            <Label>ClienteId:</Label>
+            <Label>Valor:</Label>
             <Input
               type="number"
-              name="ClienteId"
-              placeholder="id do cliente"
-              defaultValue={ClienteId}
+              name="valor"
+              placeholder="Valor do Pedido"
+              defaultValue={valor}
+              onChange={(e) => setValor(e.target.value)}
+            />
+          </FormGroup>
+          <FormGroup className="p-2">
+            <Label>Serviço ID:</Label>
+            <Input
+              type="number"
+              name="ServicoId"
+              placeholder="Serviço ID"
+              defaultValue={ServicoId}
             />
           </FormGroup>
           <Button className="m-2" type="submit" outline color="success">
@@ -140,4 +155,5 @@ export const EditarCompra = (props) => {
       </Container>
     </div>
   );
+
 };

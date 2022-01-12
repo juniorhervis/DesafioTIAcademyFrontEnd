@@ -118,7 +118,7 @@ export const EditarProduto = (props) => {
 
       <Form className="p-2" onSubmit={edtProduto}>
         <FormGroup className="p-2">
-          <Label >Produto ID</Label>
+          <Label >Produto ID:</Label>
           <Input
             type="number"
             name="id"
@@ -128,7 +128,7 @@ export const EditarProduto = (props) => {
           />
         </FormGroup>
         <FormGroup className="p-2">
-          <Label>Produto</Label>
+          <Label>Produto:</Label>
           <Input
             type="text"
             name="nome"
@@ -138,7 +138,7 @@ export const EditarProduto = (props) => {
           />
         </FormGroup>
         <FormGroup className="p-2">
-          <Label>Descrição</Label>
+          <Label>Descrição:</Label>
           <Input
             type="text"
             name="descricao"

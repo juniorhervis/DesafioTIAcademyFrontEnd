@@ -124,7 +124,7 @@ export const EditarServico = (props) => {
 
         <Form className="p-2" onSubmit={edtServico}>
           <FormGroup className="p-2">
-            <Label>Serviço ID</Label>
+            <Label>Serviço ID:</Label>
             <Input
               type="number"
               name="id"
@@ -134,7 +134,7 @@ export const EditarServico = (props) => {
             />
           </FormGroup>
           <FormGroup className="p-2">
-            <Label>Serviço</Label>
+            <Label>Serviço:</Label>
             <Input
               type="text"
               name="nome"
@@ -144,7 +144,7 @@ export const EditarServico = (props) => {
             />
           </FormGroup>
           <FormGroup className="p-2">
-            <Label>Descrição</Label>
+            <Label>Descrição:</Label>
             <Input
               type="text"
               name="descricao"

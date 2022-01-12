@@ -7,7 +7,11 @@ import { api } from "../../../config";
 export const InserirCliente = () => {
   const [cliente, setCliente] = useState({
     nome: "",
+    endereco:"",
+    cidade: "",
+    uf: "",
     nascimento: "",
+    clienteDesde:"",
   });
 
   const [status, setStatus] = useState({
@@ -85,7 +89,7 @@ export const InserirCliente = () => {
       )}
         <Form className="p-2" onSubmit={cadCliente}>
           <FormGroup className="p-2">
-            <Label>Nome</Label>
+            <Label>Nome:</Label>
             <Input
               type="text"
               name="nome"
@@ -95,7 +99,7 @@ export const InserirCliente = () => {
             />
           </FormGroup>
           <FormGroup className="p-2">
-            <Label>Endereço</Label>
+            <Label>Endereço:</Label>
             <Input
               type="text"
               name="endereco"
@@ -105,7 +109,7 @@ export const InserirCliente = () => {
             />
           </FormGroup>
           <FormGroup className="p-2">
-            <Label>Cidade</Label>
+            <Label>Cidade:</Label>
             <Input
               type="text"
               name="cidade"
@@ -115,7 +119,7 @@ export const InserirCliente = () => {
             />
           </FormGroup>
           <FormGroup className="p-2">
-            <Label>UF</Label>
+            <Label>UF:</Label>
             <Input
               type="text"
               name="uf"
@@ -125,7 +129,7 @@ export const InserirCliente = () => {
             />
           </FormGroup>
           <FormGroup className="p-2">
-            <Label>Nascimento</Label>
+            <Label>Nascimento:</Label>
             <Input
               type="date"
               name="nascimento"
@@ -135,7 +139,7 @@ export const InserirCliente = () => {
             />
           </FormGroup>
           <FormGroup className="p-2">
-            <Label>Cliente Desde</Label>
+            <Label>Cliente Desde:</Label>
             <Input
               type="date"
               name="clienteDesde"

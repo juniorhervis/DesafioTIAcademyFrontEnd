@@ -6,7 +6,7 @@ import { Alert, Container, Table } from "reactstrap";
 
 import { api } from "../../../config";
 
-export const Item = (props) => {
+export const ListarItemPedido = (props) => {
   console.log(props.match.params.id);
   const [data, setData] = useState([]);
 

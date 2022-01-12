@@ -99,7 +99,7 @@ export const InserirProduto = () => {
 
         <Form className="p-2" onSubmit={cadProduto}>
           <FormGroup className="p-2">
-            <Label>Nome</Label>
+            <Label>Nome:</Label>
             <Input
               name="nome"
               required
@@ -109,7 +109,7 @@ export const InserirProduto = () => {
             />
           </FormGroup>
           <FormGroup className="p-2">
-            <Label>Descrição</Label>
+            <Label>Descrição:</Label>
             <Input
               name="descricao"
               required

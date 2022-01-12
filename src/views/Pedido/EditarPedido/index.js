@@ -106,7 +106,7 @@ export const EditarPedido = (props) => {
 
         <Form className="p-2" onSubmit={edtPedido}>
           <FormGroup className="p-2">
-            <Label>ID Pedido</Label>
+            <Label>ID Pedido:</Label>
             <Input
               type="number"
               name="id"
@@ -115,7 +115,7 @@ export const EditarPedido = (props) => {
             />
           </FormGroup>
           <FormGroup className="p-2">
-            <Label>Data</Label>
+            <Label>Data do Pedido:</Label>
             <Input
               type="date"
               name="dataPedido"
@@ -125,7 +125,7 @@ export const EditarPedido = (props) => {
             />
           </FormGroup>
           <FormGroup className="p-2">
-            <Label>Cliente ID</Label>
+            <Label>Cliente ID:</Label>
             <Input
               type="number"
               name="ClienteId"

@@ -125,7 +125,7 @@ export const EditarCliente = (props) => {
 
         <Form className="p-2" onSubmit={edtCliente}>
           <FormGroup className="p-2">
-            <Label>Cliente ID</Label>
+            <Label>Cliente ID:</Label>
             <Input
               disabled
               type="number"
@@ -135,7 +135,7 @@ export const EditarCliente = (props) => {
             />
           </FormGroup>
           <FormGroup className="p-2">
-            <Label>Nome</Label>
+            <Label>Nome:</Label>
             <Input
               type="text"
               name="nome"
@@ -145,7 +145,7 @@ export const EditarCliente = (props) => {
             />
           </FormGroup>
           <FormGroup className="p-2">
-            <Label>Endereço</Label>
+            <Label>Endereço:</Label>
             <Input
               type="text"
               name="endereco"
@@ -155,7 +155,7 @@ export const EditarCliente = (props) => {
             />
           </FormGroup>
           <FormGroup className="p-2">
-            <Label>Cidade</Label>
+            <Label>Cidade:</Label>
             <Input
               type="text"
               name="cidade"
@@ -165,7 +165,7 @@ export const EditarCliente = (props) => {
             />
           </FormGroup>
           <FormGroup className="p-2">
-            <Label>UF</Label>
+            <Label>UF:</Label>
             <Input
               type="text"
               name="uf"
@@ -175,7 +175,7 @@ export const EditarCliente = (props) => {
             />
           </FormGroup>
           <FormGroup className="p-2">
-            <Label>Nascimento</Label>
+            <Label>Nascimento:</Label>
             <Input
               type="date"
               name="nascimento"
@@ -185,7 +185,7 @@ export const EditarCliente = (props) => {
             />
           </FormGroup>
           <FormGroup className="p-2">
-            <Label>Cliente Desde</Label>
+            <Label>Cliente Desde:</Label>
             <Input
               type="date"
               name="clienteDesde"

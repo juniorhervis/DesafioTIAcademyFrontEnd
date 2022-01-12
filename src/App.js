@@ -8,22 +8,19 @@ import { Home } from "./views/Home/index.js";
 import { EditarPedido } from "./views/Pedido/EditarPedido/index.js";
 import { InserirPedido } from "./views/Pedido/InserirPedido/index.js";
 import { ListarPedido } from "./views/Pedido/ListarPedido/index.js";
-import { PedidosCliente } from "./views/Clientes/PedidosCliente/index.js";
 import { EditarServico } from "./views/Servico/EditarServico";
 import { InserirServico } from "./views/Servico/InserirServico/index.js";
 import { ListarServico } from "./views/Servico/ListarServico/index.js";
 import { EditarCompra } from "./views/Compra/EditarCompra/index.js";
 import { InserirCompra } from "./views/Compra/InserirCompra/index.js";
 import { ListarCompra } from "./views/Compra/ListarCompra/index.js";
-import { EditarProduto } from "./views/Produto/EditarProduto/index.js"
+import { EditarProduto } from "./views/Produto/EditarProduto/index.js";
 import { ListarProduto } from "./views/Produto/ListarProduto/index.js";
 import { InserirProduto } from "./views/Produto/InserirProduto/index.js";
-
-
+import { EditarItemPedido } from "./views/ItemPedido/EditarItem/index.js";
+import { InserirItemPedido } from "./views/ItemPedido/InserirItem/index.js";
+import { ListarItemPedido } from "./views/ItemPedido/ListarItem/index.js";
 import { Menu } from "./components/Menu.js";
-import { Item } from "./views/Servico/Item/index.js";
-
-import { ItemPedido } from "./views/Pedido/ItemPedido/index.js";
 
 function App() {
   return (
@@ -45,14 +42,19 @@ function App() {
           <Route exact path="/inserir-compra" component={InserirCompra} />
           <Route exact path="/listar-compra" component={ListarCompra} />
           <Route exact path="/editar-produto/:id" component={EditarProduto} />
-          <Route exact path="/inserir-produto" component={InserirProduto}/>
-          <Route exact path="/listar-produto" component={ListarProduto}/>
-
-          <Route exact path="/pedidos-cliente/:id" component={PedidosCliente} />
-
-          <Route exact path="/pedido-servico/:id" component={ItemPedido} />
-
-          <Route exact path="/listar-pedido/:id" component={Item} />
+          <Route exact path="/inserir-produto" component={InserirProduto} />
+          <Route exact path="/listar-produto" component={ListarProduto} />
+          <Route
+            exact
+            path="/editar-itempedido/:id"
+            component={EditarItemPedido}
+          />
+          <Route
+            exact
+            path="/inserir-itempedido"
+            component={InserirItemPedido}
+          />
+          <Route exact path="/listar-itempedido" component={ListarItemPedido} />
         </Switch>
       </Router>
     </div>

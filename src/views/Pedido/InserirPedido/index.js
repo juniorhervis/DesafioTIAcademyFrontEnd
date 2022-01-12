@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useState } from "react/cjs/react.development";
+import { useState } from "react";
 import {
   Button,
   Container,
@@ -15,7 +15,7 @@ import { api } from "../../../config";
 export const InserirPedido = () => {
   const [pedido, setPedido] = useState({
     nome: "",
-    nascimento: "",
+    dataPedido: "",
   });
 
   const [status, setStatus] = useState({
@@ -89,7 +89,7 @@ export const InserirPedido = () => {
       )}
       <Form className="p-2" onSubmit={cadPedido}>
         <FormGroup className="p-2">
-          <Label>Data do Pedido</Label>
+          <Label>Data do Pedido:</Label>
           <Input
             type="date"
             name="dataPedido"
@@ -99,7 +99,7 @@ export const InserirPedido = () => {
           />
         </FormGroup>
         <FormGroup className="p-2">
-          <Label>Id do Cliente</Label>
+          <Label>Id do Cliente:</Label>
           <Input
             type="text"
             name="ClienteId"
