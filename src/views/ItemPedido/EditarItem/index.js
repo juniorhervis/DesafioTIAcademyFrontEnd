@@ -17,7 +17,6 @@ export const EditarItemPedido = (props) => {
   const [quantidade, setQuantidade] = useState("");
   const [valor, setValor] = useState("");
   const [ServicoId, setServicoId] = useState("");
-  console.log(props);
   const [status, setStatus] = useState({
     type: "",
     message: "",
@@ -55,19 +54,22 @@ export const EditarItemPedido = (props) => {
           message: "Sem conexão com a API.",
         });
       });
-  }
+  };
   useEffect(() => {
     const getItemPedido = async () => {
       await axios
         .get(api + "/itempedido/pedido/" + id)
         .then((response) => {
-          setId(response.data.pedidos.id);
-          setQuantidade(response.data.pedidos.item_pedidos.quantidade);
-          setValor(response.data.pedidos.item_pedidos.valor);
-          setServicoId(response.data.pedidos.item_pedidos.ServicoId)
+          const pedido = response.data.pedidos.item_pedidos.find((item) => {
+            return item.PedidoId === Number(id);
+          });
+          setId(pedido.PedidoId);
+          setQuantidade(pedido.quantidade);
+          setValor(pedido.valor);
+          setServicoId(pedido.ServicoId);
         })
-        .catch(() => {
-          console.log("Erro: não foi possível se conectar a API.");
+        .catch((erro) => {
+          console.log("Erro: não foi possível se conectar a API.", erro);
         });
     };
     getItemPedido();
@@ -78,7 +80,7 @@ export const EditarItemPedido = (props) => {
       <Container>
         <div className="d-flex">
           <div className="m-auto p-2">
-            <h1>Editar Item Pedido</h1>
+            <h1>Editar Item do Pedido</h1>
           </div>
           <div className="p-2">
             <Link
@@ -86,6 +88,14 @@ export const EditarItemPedido = (props) => {
               className="btn btn-outline-primary btn-sm"
             >
               Pedidos
+            </Link>
+          </div>
+          <div className="p-2">
+            <Link
+              to="/listar-servico"
+              className="btn btn-outline-primary btn-sm"
+            >
+              Serviços
             </Link>
           </div>
           <div className="p-2">
@@ -99,12 +109,16 @@ export const EditarItemPedido = (props) => {
         </div>
         <hr className="m-1" />
         {status.type === "error" ? (
-          <Alert className="m-3" color="danger">{status.message}</Alert>
+          <Alert className="m-3" color="danger">
+            {status.message}
+          </Alert>
         ) : (
           " "
         )}
         {status.type === "success" ? (
-          <Alert className="m-3" color="success">{status.message}</Alert>
+          <Alert className="m-3" color="success">
+            {status.message}
+          </Alert>
         ) : (
           " "
         )}
@@ -124,9 +138,9 @@ export const EditarItemPedido = (props) => {
             <Input
               type="number"
               name="quantidade"
-              placeholder="data do pedido"
-              value={quantidade}
-              onChange={(e) => setQuantidade(e.target.value)}
+              placeholder="Quantidade"
+              defaultValue={quantidade}
+              onChange={(item) => setQuantidade(item.target.value)}
             />
           </FormGroup>
           <FormGroup className="p-2">
@@ -136,7 +150,7 @@ export const EditarItemPedido = (props) => {
               name="valor"
               placeholder="Valor do Pedido"
               defaultValue={valor}
-              onChange={(e) => setValor(e.target.value)}
+              onChange={(item) => setValor(item.target.value)}
             />
           </FormGroup>
           <FormGroup className="p-2">
@@ -155,5 +169,4 @@ export const EditarItemPedido = (props) => {
       </Container>
     </div>
   );
-
 };

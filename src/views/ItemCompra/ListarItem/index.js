@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { Alert, Container, Table } from "reactstrap";
 import { api } from "../../../config";
 
-export const ListarItemPedido = () => {
+export const ListarItemCompra = () => {
   const [data, setData] = useState([]);
 
   const [status, setStatus] = useState({
@@ -12,9 +12,9 @@ export const ListarItemPedido = () => {
     message: "",
   });
 
-  const getItensPedidos = async () => {
+  const getItensCompras = async () => {
     axios
-      .get(api + "/listaitempedidos")
+      .get(api + "/listaitemcompras")
       .then((response) => {
         console.log(response.data.itens);
         setData(response.data.itens);
@@ -24,18 +24,17 @@ export const ListarItemPedido = () => {
       });
   };
 
-  const apagarItemPedido = async (idPedido) => {
-    console.log(idPedido);
+  const apagarItemCompra = async (idCompra) => {
+    console.log(idCompra);
 
     const headers = {
-      "Content-type": "application/json",
+      "Content-Type": "application/json",
     };
-
     await axios
-      .get(api + "/excluiritem/pedido/" + idPedido, { headers })
+      .get(api + "/excluiritem/compra/" + idCompra, { headers })
       .then((response) => {
         console.log(response.data.error);
-        getItensPedidos();
+        getItensCompras();
       })
       .catch(() => {
         setStatus({
@@ -46,7 +45,7 @@ export const ListarItemPedido = () => {
   };
 
   useEffect(() => {
-    getItensPedidos();
+    getItensCompras();
   }, []);
 
   return (
@@ -54,20 +53,18 @@ export const ListarItemPedido = () => {
       <Container>
         <div className="p-2">
           {status.type === "error" ? (
-            <Alert className="m-3" color="danger">
-              {status.message}
-            </Alert>
+            <Alert className="m-3" color="danger"></Alert>
           ) : (
-            " "
+            ""
           )}
         </div>
         <div className="d-flex">
           <div className="m-auto">
-            <h1>Visualizar Itens de Pedidos</h1>
+            <h1>Visualizar Itens de Compras</h1>
           </div>
           <div className="m-auto p-2">
             <Link
-              to="/inserir-itempedido"
+              to="/inserir-itemcompra"
               className="btn btn-outline-success btn-sm"
             >
               Cadastrar
@@ -77,8 +74,8 @@ export const ListarItemPedido = () => {
         <Table striped className="text-center">
           <thead>
             <tr>
-              <th>Pedido ID</th>
-              <th>Serviço ID</th>
+              <th>Compra ID</th>
+              <th>Produto ID</th>
               <th>Quantidade</th>
               <th>Valor</th>
               <th>Ações</th>
@@ -86,21 +83,21 @@ export const ListarItemPedido = () => {
           </thead>
           <tbody>
             {data.map((itens) => (
-              <tr key={itens.PedidoId}>
-                <td>{itens.PedidoId}</td>
-                <td>{itens.ServicoId}</td>
+              <tr key={itens.CompraId}>
+                <td>{itens.CompraId}</td>
+                <td>{itens.ProdutoId}</td>
                 <td> {itens.quantidade} </td>
                 <td> {itens.valor} </td>
                 <td>
                   <Link
-                    to={"/editar-itempedido/" + itens.PedidoId}
+                    to={"/editar-itemcompra/" + itens.CompraId}
                     className="m-1 btn btn-outline-warning btn-sm"
                   >
-                    Editar
+                    Ediatr
                   </Link>
                   <span
                     className="btn btn-outline-danger btn-sm"
-                    onClick={() => apagarItemPedido(itens.PedidoId)}
+                    onClick={() => apagarItemCompra(itens.CompraId)}
                   >
                     Excluir
                   </span>

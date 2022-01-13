@@ -20,6 +20,9 @@ import { InserirProduto } from "./views/Produto/InserirProduto/index.js";
 import { EditarItemPedido } from "./views/ItemPedido/EditarItem/index.js";
 import { InserirItemPedido } from "./views/ItemPedido/InserirItem/index.js";
 import { ListarItemPedido } from "./views/ItemPedido/ListarItem/index.js";
+import { InserirItemCompra } from "./views/ItemCompra/InserirItem";
+import { ListarItemCompra } from "./views/ItemCompra/ListarItem/index.js";
+
 import { Menu } from "./components/Menu.js";
 
 function App() {
@@ -54,7 +57,9 @@ function App() {
             path="/inserir-itempedido"
             component={InserirItemPedido}
           />
-          <Route exact path="/listar-itempedido" component={ListarItemPedido} />
+          <Route exact path="/listar-itempedido" component={ListarItemPedido}/>
+          <Route exact path="/inserir-itemcompra" component={InserirItemCompra}/>
+          <Route exact path="/listar-itemcompra" component={ListarItemCompra}/>
         </Switch>
       </Router>
     </div>

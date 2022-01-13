@@ -69,94 +69,85 @@ export const EditarServico = (props) => {
   }, [id]);
 
   return (
-      <Container>
-        <div className="d-flex">
-          <div className="m-auto p-2">
-            <h1>Editar Servico</h1>
-          </div>
-          <div className="p-2">
-            <Link
-              to="/listar-servico"
-              className="btn btn-outline-primary btn-sm"
-            >
-              Serviços
-            </Link>
-          </div>
-          <div className="p-2">
-            <Link
-              to="/listar-cliente"
-              className="btn btn-outline-primary btn-sm"
-            >
-              Clientes
-            </Link>
-          </div>
-          <div className="p-2">
-            <Link
-              to="/listar-pedido"
-              className="btn btn-outline-primary btn-sm"
-            >
-              Pedidos
-            </Link>
-          </div>
+    <Container>
+      <div className="d-flex">
+        <div className="m-auto p-2">
+          <h1>Editar Servico</h1>
         </div>
-        <hr className="m-1" />
-        {status.type === "error" ? (
-          <Alert className="m-3" color="danger">
-            {status.message}
-          </Alert>
-        ) : (
-          " "
-        )}
-        {status.type === "success" ? (
-          <Alert className="m-3" color="success">
-            {status.message}
-          </Alert>
-        ) : (
-          " "
-        )}
-        {status.type === "404" ? (
-          <Alert className="m-3" color="danger">
-            {status.message}
-          </Alert>
-        ) : (
-          ""
-        )}
+        <div className="p-2">
+          <Link to="/listar-servico" className="btn btn-outline-primary btn-sm">
+            Serviços
+          </Link>
+        </div>
+        <div className="p-2">
+          <Link to="/listar-cliente" className="btn btn-outline-primary btn-sm">
+            Clientes
+          </Link>
+        </div>
+        <div className="p-2">
+          <Link to="/listar-pedido" className="btn btn-outline-primary btn-sm">
+            Pedidos
+          </Link>
+        </div>
+      </div>
+      <hr className="m-1" />
+      {status.type === "error" ? (
+        <Alert className="m-3" color="danger">
+          {status.message}
+        </Alert>
+      ) : (
+        " "
+      )}
+      {status.type === "success" ? (
+        <Alert className="m-3" color="success">
+          {status.message}
+        </Alert>
+      ) : (
+        " "
+      )}
+      {status.type === "404" ? (
+        <Alert className="m-3" color="danger">
+          {status.message}
+        </Alert>
+      ) : (
+        ""
+      )}
 
-        <Form className="p-2" onSubmit={edtServico}>
-          <FormGroup className="p-2">
-            <Label>Serviço ID:</Label>
-            <Input
-              type="number"
-              name="id"
-              disabled
-              placeholder="ID do Produto"
-              defaultValue={id}
-            />
-          </FormGroup>
-          <FormGroup className="p-2">
-            <Label>Serviço:</Label>
-            <Input
-              type="text"
-              name="nome"
-              placeholder="Nome do Serviço"
-              value={nome}
-              onChange={(e) => setNome(e.target.value)}
-            />
-          </FormGroup>
-          <FormGroup className="p-2">
-            <Label>Descrição:</Label>
-            <Input
-              type="text"
-              name="descricao"
-              placeholder="Descrição do Serviço"
-              defaultValue={descricao}
-              onChange={(e) => setDescricao(e.target.value)}
-            />
-          </FormGroup>
-          <Button className="m-2" type="submit" outline color="success">
-            Salvar
-          </Button>
-        </Form>
-      </Container>
+      <Form className="p-2" onSubmit={edtServico}>
+        <FormGroup className="p-2">
+          <Label>Serviço ID:</Label>
+          <Input
+            type="number"
+            name="id"
+            disabled
+            placeholder="ID do Produto"
+            defaultValue={id}
+          />
+        </FormGroup>
+        <FormGroup className="p-2">
+          <Label>Serviço:</Label>
+          <Input
+            type="text"
+            name="nome"
+            placeholder="Nome do Serviço"
+            value={nome}
+            onChange={(e) => setNome(e.target.value)}
+          />
+        </FormGroup>
+        <FormGroup className="p-2">
+          <Label>Descrição:</Label>
+          <Input
+            type="text"
+            name="descricao"
+            placeholder="Descrição do Serviço"
+            defaultValue={descricao}
+            onChange={(e) => setDescricao(e.target.value)}
+          />
+        </FormGroup>
+        <Button className="m-2" type="submit" outline color="success">
+          Salvar
+        </Button>
+      </Form>
+    </Container>
   );
 };

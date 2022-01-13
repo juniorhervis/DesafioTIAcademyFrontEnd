@@ -140,6 +140,7 @@ export const EditarCliente = (props) => {
               type="text"
               name="nome"
               placeholder="Nome do Cliente"
+              required
               defaultValue={nome}
               onChange={(e) => setNome(e.target.value)}
             />
@@ -150,6 +151,7 @@ export const EditarCliente = (props) => {
               type="text"
               name="endereco"
               placeholder="Endereço"
+              required
               defaultValue={endereco}
               onChange={(e) => setEndereco(e.target.value)}
             />
@@ -160,6 +162,7 @@ export const EditarCliente = (props) => {
               type="text"
               name="cidade"
               placeholder="Cidade"
+              required
               defaultValue={cidade}
               onChange={(e) => setCidade(e.target.value)}
             />
@@ -169,7 +172,9 @@ export const EditarCliente = (props) => {
             <Input
               type="text"
               name="uf"
+              maxLength={2}
               placeholder="UF"
+              required
               defaultValue={uf}
               onChange={(e) => setUf(e.target.value)}
             />
@@ -180,6 +185,7 @@ export const EditarCliente = (props) => {
               type="date"
               name="nascimento"
               placeholder="Data de Nascimento"
+              required
               defaultValue={nascimento}
               onChange={(e) => setNascimento(e.target.value)}
             />
@@ -190,6 +196,7 @@ export const EditarCliente = (props) => {
               type="date"
               name="clienteDesde"
               placeholder="Cliente Desde"
+              required
               defaultValue={clienteDesde}
               onChange={(e) => setClienteDesde(e.target.value)}
             />
