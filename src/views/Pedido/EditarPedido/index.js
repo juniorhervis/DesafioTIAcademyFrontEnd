@@ -111,6 +111,7 @@ export const EditarPedido = (props) => {
               type="number"
               name="id"
               placeholder="id do pedido"
+              disabled
               defaultValue={id}
             />
           </FormGroup>
@@ -130,6 +131,7 @@ export const EditarPedido = (props) => {
               type="number"
               name="ClienteId"
               placeholder="id do cliente"
+              disabled
               defaultValue={ClienteId}
             />
           </FormGroup>

@@ -20,7 +20,8 @@ import { InserirProduto } from "./views/Produto/InserirProduto/index.js";
 import { EditarItemPedido } from "./views/ItemPedido/EditarItem/index.js";
 import { InserirItemPedido } from "./views/ItemPedido/InserirItem/index.js";
 import { ListarItemPedido } from "./views/ItemPedido/ListarItem/index.js";
-import { InserirItemCompra } from "./views/ItemCompra/InserirItem";
+import { EditarItemCompra } from "./views/ItemCompra/EditarItem/index.js";
+import { InserirItemCompra } from "./views/ItemCompra/InserirItem/index.js";
 import { ListarItemCompra } from "./views/ItemCompra/ListarItem/index.js";
 
 import { Menu } from "./components/Menu.js";
@@ -57,9 +58,18 @@ function App() {
             path="/inserir-itempedido"
             component={InserirItemPedido}
           />
-          <Route exact path="/listar-itempedido" component={ListarItemPedido}/>
-          <Route exact path="/inserir-itemcompra" component={InserirItemCompra}/>
-          <Route exact path="/listar-itemcompra" component={ListarItemCompra}/>
+          <Route exact path="/listar-itempedido" component={ListarItemPedido} />
+          <Route
+            exact
+            path="/editar-itemcompra/:id"
+            component={EditarItemCompra}
+          />
+          <Route
+            exact
+            path="/inserir-itemcompra"
+            component={InserirItemCompra}
+          />
+          <Route exact path="/listar-itemcompra" component={ListarItemCompra} />
         </Switch>
       </Router>
     </div>

@@ -127,10 +127,11 @@ export const EditarCliente = (props) => {
           <FormGroup className="p-2">
             <Label>Cliente ID:</Label>
             <Input
-              disabled
+              
               type="number"
               name="id"
               placeholder="id do Cliente"
+              disabled
               defaultValue={id}
             />
           </FormGroup>

@@ -102,7 +102,7 @@ export const InserirItemPedido = () => {
           <Input
             type="number"
             name="quantidade"
-            placeholder="Quantidade do Pedido"
+            placeholder="Quantidade de Itens"
             required
             onChange={valorInput}
           />

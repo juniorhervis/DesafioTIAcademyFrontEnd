@@ -31,7 +31,7 @@ export const EditarItemPedido = (props) => {
 
     await axios
       .put(
-        api + "/editarItem/pedido/" + id,
+        api + "/editaritem/pedido/" + id,
         { id, quantidade, valor, ServicoId },
         { headers }
       )
@@ -69,7 +69,7 @@ export const EditarItemPedido = (props) => {
           setServicoId(pedido.ServicoId);
         })
         .catch((erro) => {
-          console.log("Erro: não foi possível se conectar a API.", erro);
+          console.log("Erro: Não foi possível se conectar a API.", erro);
         });
     };
     getItemPedido();
@@ -130,6 +130,7 @@ export const EditarItemPedido = (props) => {
               type="number"
               name="id"
               placeholder="id do pedido"
+              disabled
               defaultValue={id}
             />
           </FormGroup>
@@ -159,6 +160,7 @@ export const EditarItemPedido = (props) => {
               type="number"
               name="ServicoId"
               placeholder="Serviço ID"
+              disabled
               defaultValue={ServicoId}
             />
           </FormGroup>

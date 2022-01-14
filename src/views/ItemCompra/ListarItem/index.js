@@ -93,7 +93,7 @@ export const ListarItemCompra = () => {
                     to={"/editar-itemcompra/" + itens.CompraId}
                     className="m-1 btn btn-outline-warning btn-sm"
                   >
-                    Ediatr
+                    Editar
                   </Link>
                   <span
                     className="btn btn-outline-danger btn-sm"

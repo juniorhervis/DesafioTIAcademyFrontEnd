@@ -118,7 +118,7 @@ export const EditarProduto = (props) => {
 
       <Form className="p-2" onSubmit={edtProduto}>
         <FormGroup className="p-2">
-          <Label >Produto ID:</Label>
+          <Label>Produto ID:</Label>
           <Input
             type="number"
             name="id"
