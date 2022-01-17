@@ -1,4 +1,5 @@
 import axios from "axios";
+import moment from "moment";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Alert, Container, Table } from "reactstrap";
@@ -85,7 +86,7 @@ export const ListarPedido = () => {
             {data.map((pedidos) => (
               <tr key={pedidos.id}>
                 <th>{pedidos.id}</th>
-                <td>{pedidos.dataPedido}</td>
+                <td>{moment(pedidos.dataPedido).format("DD/MM/YYYY")}</td>
                 <td>{pedidos.ClienteId}</td>
                 <td>
                   <Link

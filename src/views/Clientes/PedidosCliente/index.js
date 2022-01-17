@@ -3,9 +3,10 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Container, Table } from "reactstrap";
 import { api } from "../../../config";
+import moment from "moment";
 
 export const PedidosCliente = (props) => {
-  //console.log(props.match.params.id)
+  console.log(props.match.params.id)
 
   const [data, setData] = useState([]);
 
@@ -50,7 +51,7 @@ export const PedidosCliente = (props) => {
             </Link>
           </div>
         </div>
-        <Table striped>
+        <Table striped className="text-center">
           <thead>
             <tr>
               <th>Pedido ID</th>
@@ -63,7 +64,7 @@ export const PedidosCliente = (props) => {
               <tr key={pedidos.id}>
                 <td>{pedidos.id}</td>
                 <td>{pedidos.ClienteId}</td>
-                <td>{pedidos.dataPedido}</td>
+                <td>{moment(pedidos.dataPedido).format("DD/MM/YYYY")}</td>
                 <td className="text-center">
                   <Link
                     to={"/editar-pedido/" + pedidos.id}

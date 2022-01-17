@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Alert, Container, Table } from "reactstrap";
 import { api } from "../../../config";
+import moment from "moment";
 
 export const ListarCompra = () => {
   const [data, setData] = useState([]);
@@ -85,7 +86,7 @@ export const ListarCompra = () => {
             {data.map((compras) => (
               <tr key={compras.id}>
                 <th>{compras.id}</th>
-                <td>{compras.data}</td>
+                <td>{moment(compras.data).format("DD/MM/YYYY")}</td>
                 <td>{compras.ClienteId}</td>
                 <td>
                   <Link

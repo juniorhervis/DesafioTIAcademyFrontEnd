@@ -87,7 +87,13 @@ export const ListarItemCompra = () => {
                 <td>{itens.CompraId}</td>
                 <td>{itens.ProdutoId}</td>
                 <td> {itens.quantidade} </td>
-                <td> {itens.valor} </td>
+                <td>
+                  {" "}
+                  {itens.valor.toLocaleString("pt-br", {
+                    style: "currency",
+                    currency: "BRL",
+                  })}
+                </td>
                 <td>
                   <Link
                     to={"/editar-itemcompra/" + itens.CompraId}

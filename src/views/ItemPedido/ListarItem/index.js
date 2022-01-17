@@ -89,8 +89,13 @@ export const ListarItemPedido = () => {
               <tr key={itens.PedidoId}>
                 <td>{itens.PedidoId}</td>
                 <td>{itens.ServicoId}</td>
-                <td> {itens.quantidade} </td>
-                <td> {itens.valor} </td>
+                <td>{itens.quantidade}</td>
+                <td>
+                  {itens.valor.toLocaleString("pt-br", {
+                    style: "currency",
+                    currency: "BRL",
+                  })}{" "}
+                </td>
                 <td>
                   <Link
                     to={"/editar-itempedido/" + itens.PedidoId}

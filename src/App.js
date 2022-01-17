@@ -4,11 +4,12 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { EditarCliente } from "./views/Clientes/EditarCliente/index.js";
 import { InserirCliente } from "./views/Clientes/InserirCliente/index.js";
 import { ListarCliente } from "./views/Clientes/ListarCliente/index.js";
+import { PedidosCliente } from "./views/Clientes/PedidosCliente/index.js";
 import { Home } from "./views/Home/index.js";
 import { EditarPedido } from "./views/Pedido/EditarPedido/index.js";
 import { InserirPedido } from "./views/Pedido/InserirPedido/index.js";
 import { ListarPedido } from "./views/Pedido/ListarPedido/index.js";
-import { EditarServico } from "./views/Servico/EditarServico";
+import { EditarServico } from "./views/Servico/EditarServico/index.js";
 import { InserirServico } from "./views/Servico/InserirServico/index.js";
 import { ListarServico } from "./views/Servico/ListarServico/index.js";
 import { EditarCompra } from "./views/Compra/EditarCompra/index.js";
@@ -35,6 +36,11 @@ function App() {
           <Route exact path="/editar-cliente/:id" component={EditarCliente} />
           <Route exact path="/inserir-cliente" component={InserirCliente} />
           <Route exact path="/listar-cliente" component={ListarCliente} />
+          <Route
+            exact
+            path={"/cliente/:id/pedidos"}
+            component={PedidosCliente}
+          />
           <Route exact path="/" component={Home} />
           <Route exact path="/editar-pedido/:id" component={EditarPedido} />
           <Route exact path="/inserir-pedido" component={InserirPedido} />

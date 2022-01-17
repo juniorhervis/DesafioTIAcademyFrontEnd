@@ -52,7 +52,7 @@ export const ListarCliente = () => {
   return (
     <div>
       <Container>
-      <div className="p-2">
+        <div className="p-2">
           {status.type === "error" ? (
             <Alert color="danger">{status.message}</Alert>
           ) : (
@@ -90,6 +90,12 @@ export const ListarCliente = () => {
                 <td>{clientes.endereco}</td>
                 <td>{clientes.cidade}</td>
                 <td>
+                  <Link
+                    to={"/cliente/" + clientes.id + "/pedidos"}
+                    className="m-1 btn btn-outline-primary btn-sm"
+                  >
+                    Consultar
+                  </Link>
                   <Link
                     to={"/editar-cliente/" + clientes.id}
                     className="m-1 btn btn-outline-warning btn-sm"

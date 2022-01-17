@@ -75,108 +75,108 @@ export const EditarItemCompra = (props) => {
     getItemCompra();
   }, [id]);
 
-return( 
+  return (
     <div>
-    <Container>
-      <div className="d-flex">
-        <div className="m-auto p-2">
-          <h1>Editar Item da Compra</h1>
-        </div>
-        <div className="p-2">
-          <Link
-            to="/listar-compra"
-            className="btn btn-outline-primary btn-sm"
-          >
-           Compras
-          </Link>
-        </div>
-        <div className="p-2">
-          <Link
-            to="/listar-produto"
-            className="btn btn-outline-primary btn-sm"
-          >
-            Produtos
-          </Link>
-        </div>
-        <div className="p-2">
-          <Link
-            to="/listar-cliente"
-            className="btn btn-outline-primary btn-sm"
-          >
-            Clientes
-          </Link>
-        </div>
-        <div className="p-2">
-          <Link
-            to="/listar-itemcompra"
-            className="btn btn-outline-primary btn-sm"
-          >
+      <Container>
+        <div className="d-flex">
+          <div className="m-auto p-2">
+            <h1>Editar Item da Compra</h1>
+          </div>
+          <div className="p-2">
+            <Link
+              to="/listar-compra"
+              className="btn btn-outline-primary btn-sm"
+            >
+              Compras
+            </Link>
+          </div>
+          <div className="p-2">
+            <Link
+              to="/listar-produto"
+              className="btn btn-outline-primary btn-sm"
+            >
+              Produtos
+            </Link>
+          </div>
+          <div className="p-2">
+            <Link
+              to="/listar-cliente"
+              className="btn btn-outline-primary btn-sm"
+            >
+              Clientes
+            </Link>
+          </div>
+          <div className="p-2">
+            <Link
+              to="/listar-itemcompra"
+              className="btn btn-outline-primary btn-sm"
+            >
               Item Compras
-          </Link>
+            </Link>
+          </div>
         </div>
-      </div>
-      <hr className="m-1" />
-      {status.type === "error" ? (
-        <Alert className="m-3" color="danger">
-          {status.message}
-        </Alert>
-      ) : (
-        " "
-      )}
-      {status.type === "success" ? (
-        <Alert className="m-3" color="success">
-          {status.message}
-        </Alert>
-      ) : (
-        " "
-      )}
+        <hr className="m-1" />
+        {status.type === "error" ? (
+          <Alert className="m-3" color="danger">
+            {status.message}
+          </Alert>
+        ) : (
+          " "
+        )}
+        {status.type === "success" ? (
+          <Alert className="m-3" color="success">
+            {status.message}
+          </Alert>
+        ) : (
+          " "
+        )}
 
-      <Form className="p-2" onSubmit={edtItemCompra}>
-        <FormGroup className="p-2">
-          <Label>ID Compra:</Label>
-          <Input
-            type="number"
-            name="id"
-            placeholder="id da Compra"
-            disabled
-            defaultValue={id}
-          />
-        </FormGroup>
-        <FormGroup className="p-2">
-          <Label>Quantidade:</Label>
-          <Input
-            type="number"
-            name="quantidade"
-            placeholder="Quantidade"
-            defaultValue={quantidade}
-            onChange={(item) => setQuantidade(item.target.value)}
-          />
-        </FormGroup>
-        <FormGroup className="p-2">
-          <Label>Valor:</Label>
-          <Input
-            type="number"
-            name="valor"
-            placeholder="Valor da Compra"
-            defaultValue={valor}
-            onChange={(item) => setValor(item.target.value)}
-          />
-        </FormGroup>
-        <FormGroup className="p-2">
-          <Label>Produto ID:</Label>
-          <Input
-            type="number"
-            name="ProdutoId"
-            placeholder="Serviço ID"
-            disabled
-            defaultValue={ProdutoId}
-          />
-        </FormGroup>
-        <Button className="m-2" type="submit" outline color="success">
-          Salvar
-        </Button>
-      </Form>
-    </Container>
-  </div>
-);
+        <Form className="p-2" onSubmit={edtItemCompra}>
+          <FormGroup className="p-2">
+            <Label>ID Compra:</Label>
+            <Input
+              type="number"
+              name="id"
+              placeholder="id da Compra"
+              disabled
+              defaultValue={id}
+            />
+          </FormGroup>
+          <FormGroup className="p-2">
+            <Label>Quantidade:</Label>
+            <Input
+              type="number"
+              name="quantidade"
+              placeholder="Quantidade"
+              defaultValue={quantidade}
+              onChange={(item) => setQuantidade(item.target.value)}
+            />
+          </FormGroup>
+          <FormGroup className="p-2">
+            <Label>Valor:</Label>
+            <Input
+              type="number"
+              name="valor"
+              placeholder="Valor da Compra"
+              defaultValue={valor}
+              onChange={(item) => setValor(item.target.value)}
+            />
+          </FormGroup>
+          <FormGroup className="p-2">
+            <Label>Produto ID:</Label>
+            <Input
+              type="number"
+              name="ProdutoId"
+              placeholder="Serviço ID"
+              disabled
+              defaultValue={ProdutoId}
+            />
+          </FormGroup>
+          <Button className="m-2" type="submit" outline color="success">
+            Salvar
+          </Button>
+        </Form>
+      </Container>
+    </div>
+  );
 };
