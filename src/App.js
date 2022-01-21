@@ -5,6 +5,7 @@ import { EditarCliente } from "./views/Clientes/EditarCliente/index.js";
 import { InserirCliente } from "./views/Clientes/InserirCliente/index.js";
 import { ListarCliente } from "./views/Clientes/ListarCliente/index.js";
 import { PedidosCliente } from "./views/Clientes/PedidosCliente/index.js";
+import { ComprasCliente } from "./views/Clientes/ComprasCliente/index.js";
 import { Home } from "./views/Home/index.js";
 import { EditarPedido } from "./views/Pedido/EditarPedido/index.js";
 import { InserirPedido } from "./views/Pedido/InserirPedido/index.js";
@@ -40,6 +41,11 @@ function App() {
             exact
             path={"/cliente/:id/pedidos"}
             component={PedidosCliente}
+          />
+          <Route
+            exact
+            path={"/cliente/:id/compras"}
+            component={ComprasCliente}
           />
           <Route exact path="/" component={Home} />
           <Route exact path="/editar-pedido/:id" component={EditarPedido} />

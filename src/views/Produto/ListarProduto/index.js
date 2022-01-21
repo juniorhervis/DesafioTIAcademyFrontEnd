@@ -104,8 +104,8 @@ export const ListarProduto = () => {
           {data.map((produtos) => (
             <tr key={produtos.id}>
               <th> {produtos.id} </th>
-              <th> {produtos.nome} </th>
-              <th> {produtos.descricao} </th>
+              <td> {produtos.nome} </td>
+              <td> {produtos.descricao} </td>
               <td>
                 <Link
                   to={"/editar-produto/" + produtos.id}

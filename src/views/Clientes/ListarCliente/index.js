@@ -94,7 +94,13 @@ export const ListarCliente = () => {
                     to={"/cliente/" + clientes.id + "/pedidos"}
                     className="m-1 btn btn-outline-primary btn-sm"
                   >
-                    Consultar
+                    Pedidos
+                  </Link>
+                  <Link
+                    to={"/cliente/" + clientes.id + "/compras"}
+                    className="m-1 btn btn-outline-primary btn-sm"
+                  >
+                    Compras
                   </Link>
                   <Link
                     to={"/editar-cliente/" + clientes.id}

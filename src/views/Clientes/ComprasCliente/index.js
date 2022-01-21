@@ -5,26 +5,26 @@ import { Container, Table } from "reactstrap";
 import { api } from "../../../config";
 import moment from "moment";
 
-export const PedidosCliente = (props) => {
-  console.log(props.match.params.id);
+export const ComprasCliente = (props) => {
+  console.log(props.match.params.id)
 
   const [data, setData] = useState([]);
 
   const [id] = useState(props.match.params.id);
 
   useEffect(() => {
-    const getPedidos = async () => {
+    const getCompras = async () => {
       await axios
-        .get(api + "/cliente/" + id + "/pedidos")
+        .get(api + "/cliente/" + id + "/compras")
         .then((response) => {
-          console.log(response.data.pedidos);
-          setData(response.data.pedidos);
+          console.log(response.data.compras);
+          setData(response.data.compras);
         })
         .catch(() => {
           console.log("Erro. Sem conexão com a API.");
         });
     };
-    getPedidos();
+    getCompras();
   }, [id]);
 
   return (
@@ -32,7 +32,7 @@ export const PedidosCliente = (props) => {
       <Container>
         <div className="d-flex">
           <div className="m-auto p-2">
-            <h1>Pedidos do cliente</h1>
+            <h1>Compras do cliente</h1>
           </div>
           <div className="p-2">
             <Link
@@ -44,30 +44,30 @@ export const PedidosCliente = (props) => {
           </div>
           <div className="p-2">
             <Link
-              to="/listar-pedido"
+              to="/listar-compra"
               className="btn btn-outline-primary btn-sm"
             >
-              Pedidos
+              Compras
             </Link>
           </div>
         </div>
         <Table striped className="text-center">
           <thead>
             <tr>
-              <th>Pedido ID</th>
+              <th>Compra ID</th>
               <th>Cliente ID</th>
-              <th>Data do pedido</th>
+              <th>Data do compra</th>
             </tr>
           </thead>
           <tbody>
-            {data.map((pedidos) => (
-              <tr key={pedidos.id}>
-                <td>{pedidos.id}</td>
-                <td>{pedidos.ClienteId}</td>
-                <td>{moment(pedidos.dataPedido).format("DD/MM/YYYY")}</td>
+            {data.map((compras) => (
+              <tr key={compras.id}>
+                <td>{compras.id}</td>
+                <td>{compras.ClienteId}</td>
+                <td>{moment(compras.dataCompra).format("DD/MM/YYYY")}</td>
                 <td className="text-center">
                   <Link
-                    to={"/editar-pedido/" + pedidos.id}
+                    to={"/editar-compra/" + compras.id}
                     className="btn btn-outline-warning btn-sm"
                   >
                     Editar
